@@ -64,23 +64,31 @@
   }
 
   // Draw in batches so the page stays responsive during the animation.
-  let index = 0;
-  const batchSize = 100;
-  function frame() {
+ // Draw slowly in batches
+let index = 0;
+const batchSize = 100;
+const delayMs = 80;
+
+function frame() {
     const end = Math.min(index + batchSize, particles.length);
+
     for (; index < end; index++) {
-      const p = particles[index];
-      ctx.beginPath();
-      ctx.moveTo(p.x1, p.y1);
-      ctx.lineTo(p.x2, p.y2);
-      ctx.strokeStyle = p.color;
-      ctx.lineWidth = p.width;
-      ctx.stroke();
+        const p = particles[index];
+
+        ctx.beginPath();
+        ctx.moveTo(p.x1, p.y1);
+        ctx.lineTo(p.x2, p.y2);
+        ctx.strokeStyle = p.color;
+        ctx.lineWidth = p.width;
+        ctx.stroke();
     }
-   if (index < particles.length) {
-    setTimeout(frame, 80);
+
+    if (index < particles.length) {
+        setTimeout(frame, delayMs);
+    }
 }
-  requestAnimationFrame(frame);
+
+frame();
 })();
 </script>
 </body>
