@@ -65,7 +65,7 @@
 
   // Draw in batches so the page stays responsive during the animation.
   let index = 0;
-  const batchSize = 350;
+  const batchSize = 50;
   function frame() {
     const end = Math.min(index + batchSize, particles.length);
     for (; index < end; index++) {
