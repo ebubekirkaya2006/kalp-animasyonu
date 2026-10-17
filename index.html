@@ -65,7 +65,7 @@
 
   // Draw in batches so the page stays responsive during the animation.
   let index = 0;
-  const batchSize = 1;
+  const batchSize = 100;
   function frame() {
     const end = Math.min(index + batchSize, particles.length);
     for (; index < end; index++) {
@@ -77,8 +77,9 @@
       ctx.lineWidth = p.width;
       ctx.stroke();
     }
-    if (index < particles.length) requestAnimationFrame(frame);
-  }
+   if (index < particles.length) {
+    setTimeout(frame, 80);
+}
   requestAnimationFrame(frame);
 })();
 </script>
